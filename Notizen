@@ -1,0 +1,14 @@
+Erkenntnisse vom 12.04
+-7Seg Displays: Unterscheidung common Anode / Kathode
+wir haben common Anode (-)
+-Outputpins wenn LOW als GND verwendbar
+- 1 Display aufbauen und bel zahl anzeigen als gute einführungs Übung
+- Pinzetten zum Biegen und verkabeln
+- fertig 4 zellige 7 seg Displays verwenden
+- Decoder: Beachten ob gem. kathode / gem Anode -> Display und Decoder müssen passen
+wir haben: gem Kathode (+)
+Decoder: BL, LE und LT konstant belegbar -> brauchen keine eigene Pinzetten
+
+evtl. kann dieser Teil ( aufbau eines Displays und anzeigen von zahlen) als eigener Versuch verwendet werden
+
+-Multimeter mitbringen
