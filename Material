@@ -19,14 +19,5 @@ Platinen
 
 summe : ca 10 Euro
 
-Material 2.0
-Mikrocontroller ATmega328 ?
-Sockel für MC
-4 Number 7 Seg display FJ8401DH oder FJ8401AH 
-IC für Display
-Summer
-2 Knöpfe Ctrl
-1 Knopf snooze
-Schiebe Schalter
-Funkuhr dcf77 oder RTC
-Strom (USB)
+
+sockel https://lcsc.com/product-detail/IC-Sockets_XFCN-IC254V-12-28-0743_C2874014.html
