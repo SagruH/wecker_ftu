@@ -48,7 +48,7 @@ byte display_digits[] = {0,0,0,0}; //write here what to display in each digit
 int s_time;
 
 RTC_DS1307 rtc; //RTC Class instance
-DateTime weck_zeit(2050, 1, 1, 8, 15, 0); //time for alarm
+DateTime weck_zeit(2050, 1, 1, 10, 5, 0); //time for alarm
 DateTime neue_zeit; // new time for changing time
 
 
@@ -116,7 +116,7 @@ void setMux(byte num) {
 
 //changes mux every 50 ms to check for changes
 void timeMux() {
-  if((millis() - mux_time) < 5) {return;} //checks if 5ms has passed
+  if((millis() - mux_time) < 10) {return;} //checks if 5ms has passed
   else {
     mux_state++;          //sets next mux state
     if (mux_state == mux_highest_pin + 1) { //resets mux state after max
@@ -140,7 +140,7 @@ void setWeck_zeit() {
     bool min_button = digitalRead(button1);
     bool hour_button = digitalRead(muxcom);
     
-    if((mux_state = 0) && (hour_button)) {
+    if((mux_state == 0) && (hour_button)) {
       weck_zeit = weck_zeit + TimeSpan(0, 1, 0, 0);
     }
         if(min_button) {
@@ -156,7 +156,7 @@ void setRTC_time() {
     bool min_button = digitalRead(button1);
     bool hour_button = digitalRead(muxcom);
     
-    if((mux_state = 0) && (hour_button)) {
+    if((mux_state == 0) && (hour_button)) {
       neue_zeit = neue_zeit + TimeSpan(0, 1, 0, 0);
     }
         if(min_button) {
@@ -209,7 +209,7 @@ void setup() {
 //Setup RTC 
 //-------------------------------     
     rtc.begin();
-    //rtc.adjust(DateTime(2022, 9, 28, 0, 15, 0)); //sets time
+    //rtc.adjust(DateTime(2022, 11, 2, 10, 5, 0)); //sets time
     
     
 //-------------------------------
@@ -258,9 +258,11 @@ void loop() {
         break;
       case 2:     //010 activate alarm
         writeDisplay(zeit.hour()/ 10, zeit.hour() % 10, zeit.minute()/ 10, zeit.minute() % 10); 
-        if ( (weck_zeit.hour() > zeit.hour() ) && ( weck_zeit.minute() > zeit.minute() ) ) 
+        if ( (weck_zeit.hour() >= zeit.hour() ) && ( weck_zeit.minute() >= zeit.minute() ) ) {
+        alarm(1);          
+        } 
         break;
-      case 3:     //01)1 set alarm
+      case 3:     //011 set alarm
         writeDisplay(weck_zeit.hour()/ 10, weck_zeit.hour() % 10, weck_zeit.minute()/ 10, weck_zeit.minute() % 10); 
         setWeck_zeit();
         break;
@@ -277,5 +279,4 @@ void loop() {
         alarm(0);
         break;
       }
-      
 }
